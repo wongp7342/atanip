@@ -1,0 +1,11 @@
+0.7
+2020.2
+Feb  8 2024
+23:58:30
+/home/psw/atanip/atanip.gen/sources_1/ip/adder/sim/adder.v,1720186988,verilog,,/home/psw/atanip/atanip.srcs/sources_1/new/atanip.v,,adder,,uvm,,,,,,
+/home/psw/atanip/atanip.gen/sources_1/ip/multiply/sim/multiply.v,1720186648,verilog,,/home/psw/atanip/atanip.gen/sources_1/ip/recipsqrt/sim/recipsqrt.v,,multiply,,uvm,,,,,,
+/home/psw/atanip/atanip.gen/sources_1/ip/recipsqrt/sim/recipsqrt.v,1720187130,verilog,,/home/psw/atanip/atanip.gen/sources_1/ip/adder/sim/adder.v,,recipsqrt,,uvm,,,,,,
+/home/psw/atanip/atanip.gen/sources_1/ip/vcordic/sim/vcordic.vhd,1720183273,vhdl,,,,vcordic,,,,,,,,
+/home/psw/atanip/atanip.sim/sim_1/behav/xsim/glbl.v,1697210495,verilog,,,,glbl,,uvm,,,,,,
+/home/psw/atanip/atanip.srcs/sim_1/new/atan_tb.sv,1720190267,systemVerilog,,,,example_sim,,uvm,,,,,,
+/home/psw/atanip/atanip.srcs/sources_1/new/atanip.v,1720199995,verilog,,,,Add;FP_extract;InvSqrt;Multiplier;Q2_VFixedToFloat32;Q2_VFloatToFixed32;Q3_VFixedToFloat32;Q3_VFloatToFixed32;RangeReducer;RegChain;Register;VCLZ32;VFixedToFloat32;VFloatToFixed32;atan;leadingOneDetector;sub,,uvm,,,,,,

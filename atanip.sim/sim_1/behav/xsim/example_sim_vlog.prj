@@ -1,0 +1,15 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../atanip.gen/sources_1/ip/multiply/sim/multiply.v" \
+"../../../../atanip.gen/sources_1/ip/recipsqrt/sim/recipsqrt.v" \
+"../../../../atanip.gen/sources_1/ip/adder/sim/adder.v" \
+"../../../../atanip.srcs/sources_1/new/atanip.v" \
+
+sv xil_defaultlib  \
+"../../../../atanip.srcs/sim_1/new/atan_tb.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

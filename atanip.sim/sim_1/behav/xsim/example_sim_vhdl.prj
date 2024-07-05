@@ -1,0 +1,6 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../atanip.gen/sources_1/ip/vcordic/sim/vcordic.vhd" \
+
+# Do not sort compile order
+nosort
