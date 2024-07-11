@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2.2 (lin64) Build 4126759 Thu Feb  8 23:52:05 MST 2024
-| Date         : Thu Jul 11 17:19:23 2024
+| Date         : Thu Jul 11 17:31:55 2024
 | Host         : mdesktop running 64-bit unknown
 | Command      : report_utilization -file atan_utilization_synth.rpt -pb atan_utilization_synth.pb
 | Design       : atan
@@ -35,15 +35,15 @@ Table of Contents
 +----------------------------+------+-------+------------+-----------+-------+
 |          Site Type         | Used | Fixed | Prohibited | Available | Util% |
 +----------------------------+------+-------+------------+-----------+-------+
-| CLB LUTs*                  |  572 |     0 |          0 |   1728000 |  0.03 |
-|   LUT as Logic             |  534 |     0 |          0 |   1728000 |  0.03 |
-|   LUT as Memory            |   38 |     0 |          0 |    791040 | <0.01 |
+| CLB LUTs*                  | 1760 |     0 |          0 |   1728000 |  0.10 |
+|   LUT as Logic             | 1524 |     0 |          0 |   1728000 |  0.09 |
+|   LUT as Memory            |  236 |     0 |          0 |    791040 |  0.03 |
 |     LUT as Distributed RAM |    0 |     0 |            |           |       |
-|     LUT as Shift Register  |   38 |     0 |            |           |       |
-| CLB Registers              |  175 |     0 |          0 |   3456000 | <0.01 |
-|   Register as Flip Flop    |  175 |     0 |          0 |   3456000 | <0.01 |
+|     LUT as Shift Register  |  236 |     0 |            |           |       |
+| CLB Registers              | 1586 |     0 |          0 |   3456000 |  0.05 |
+|   Register as Flip Flop    | 1586 |     0 |          0 |   3456000 |  0.05 |
 |   Register as Latch        |    0 |     0 |          0 |   3456000 |  0.00 |
-| CARRY8                     |   16 |     0 |          0 |    216000 | <0.01 |
+| CARRY8                     |  155 |     0 |          0 |    216000 |  0.07 |
 | F7 Muxes                   |    0 |     0 |          0 |    864000 |  0.00 |
 | F8 Muxes                   |    0 |     0 |          0 |    432000 |  0.00 |
 | F9 Muxes                   |    0 |     0 |          0 |    216000 |  0.00 |
@@ -67,7 +67,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
-| 175   |          Yes |       Reset |            - |
+| 1586  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -161,18 +161,19 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| LUT6     |  273 |                 CLB |
-| FDRE     |  175 |            Register |
-| LUT5     |  101 |                 CLB |
-| LUT1     |   68 |                 CLB |
-| LUT3     |   63 |                 CLB |
-| LUT2     |   50 |                 CLB |
-| LUT4     |   46 |                 CLB |
-| SRLC32E  |   38 |                 CLB |
+| FDRE     | 1586 |            Register |
+| LUT2     |  754 |                 CLB |
+| LUT6     |  500 |                 CLB |
+| LUT4     |  278 |                 CLB |
+| LUT5     |  265 |                 CLB |
+| CARRY8   |  155 |                 CLB |
+| LUT3     |  144 |                 CLB |
+| SRL16E   |  137 |                 CLB |
+| SRLC32E  |   99 |                 CLB |
+| LUT1     |   89 |                 CLB |
 | INBUF    |   34 |                 I/O |
 | IBUFCTRL |   34 |              Others |
 | OBUF     |   32 |                 I/O |
-| CARRY8   |   16 |                 CLB |
 | BUFGCE   |    1 |               Clock |
 +----------+------+---------------------+
 
@@ -185,7 +186,6 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------+------+
 | fpcmp    |    2 |
 | vcordic  |    1 |
-| inverter |    1 |
 +----------+------+
 
 
