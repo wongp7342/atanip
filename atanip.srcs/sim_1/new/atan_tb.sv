@@ -39,7 +39,7 @@ function real abs;
 endfunction
 
 initial begin
-	delay_ = 69;
+	delay_ = 76;
 	clockcount_ = 32'd0;
     clock_ = 1'b1;
     reset_ = 1'b1;

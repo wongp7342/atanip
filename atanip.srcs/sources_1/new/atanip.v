@@ -60,7 +60,7 @@ module atan(
         
     wire [1:0] invconddelay0;
    
-    RegChain #(.COUNT(27), .WIDTH(2)) delaymode0(
+    RegChain #(.COUNT(34), .WIDTH(2)) delaymode0(
                                     .clock(clock),
                                      .reset(reset),
                                      .in(invcond),
@@ -68,7 +68,7 @@ module atan(
                                      );
     
     
-    RegChain  #(.COUNT(29)) delayy0(
+    RegChain  #(.COUNT(36)) delayy0(
     .clock(clock), .reset(reset),
     .in(y0), .out(y0delayreg));
 

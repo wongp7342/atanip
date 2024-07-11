@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="example_sim_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="example_sim" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="207.680 ns"></ZoomStartTime>
+      <ZoomEndTime time="563.669 ns"></ZoomEndTime>
+      <Cursor1Time time="313.756 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="341"></NameColumnWidth>
+      <ValueColumnWidth column_width="287"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="19" />
+   <wvobject type="logic" fp_name="/example_sim/clock_">
+      <obj_property name="ElementShortName">clock_</obj_property>
+      <obj_property name="ObjectShortName">clock_</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/example_sim/reset_">
+      <obj_property name="ElementShortName">reset_</obj_property>
+      <obj_property name="ObjectShortName">reset_</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/example_sim/clockcount_">
+      <obj_property name="ElementShortName">clockcount_[31:0]</obj_property>
+      <obj_property name="ObjectShortName">clockcount_[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/example_sim/cosout_">
+      <obj_property name="ElementShortName">cosout_[31:0]</obj_property>
+      <obj_property name="ObjectShortName">cosout_[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/example_sim/sinout_">
+      <obj_property name="ElementShortName">sinout_[31:0]</obj_property>
+      <obj_property name="ObjectShortName">sinout_[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/example_sim/atanout_">
+      <obj_property name="ElementShortName">atanout_[31:0]</obj_property>
+      <obj_property name="ObjectShortName">atanout_[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/example_sim/x0_">
+      <obj_property name="ElementShortName">x0_[31:0]</obj_property>
+      <obj_property name="ObjectShortName">x0_[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/example_sim/y0_">
+      <obj_property name="ElementShortName">y0_[31:0]</obj_property>
+      <obj_property name="ObjectShortName">y0_[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/example_sim/z0_">
+      <obj_property name="ElementShortName">z0_[31:0]</obj_property>
+      <obj_property name="ObjectShortName">z0_[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/example_sim/testinputs_">
+      <obj_property name="ElementShortName">testinputs_[103:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">testinputs_[103:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/example_sim/idx_">
+      <obj_property name="ElementShortName">idx_[31:0]</obj_property>
+      <obj_property name="ObjectShortName">idx_[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/example_sim/delay_">
+      <obj_property name="ElementShortName">delay_[31:0]</obj_property>
+      <obj_property name="ObjectShortName">delay_[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/example_sim/testfloat_">
+      <obj_property name="ElementShortName">testfloat_</obj_property>
+      <obj_property name="ObjectShortName">testfloat_</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/example_sim/testin_">
+      <obj_property name="ElementShortName">testin_</obj_property>
+      <obj_property name="ObjectShortName">testin_</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/example_sim/actual_">
+      <obj_property name="ElementShortName">actual_</obj_property>
+      <obj_property name="ObjectShortName">actual_</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/example_sim/expected_">
+      <obj_property name="ElementShortName">expected_</obj_property>
+      <obj_property name="ObjectShortName">expected_</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/example_sim/error_">
+      <obj_property name="ElementShortName">error_</obj_property>
+      <obj_property name="ObjectShortName">error_</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/example_sim/TEST_SIZE">
+      <obj_property name="ElementShortName">TEST_SIZE[31:0]</obj_property>
+      <obj_property name="ObjectShortName">TEST_SIZE[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group19">
+      <obj_property name="label">atan</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/example_sim/atandut/clock">
+         <obj_property name="ElementShortName">clock</obj_property>
+         <obj_property name="ObjectShortName">clock</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/example_sim/atandut/reset">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/y0">
+         <obj_property name="ElementShortName">y0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">y0[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/out">
+         <obj_property name="ElementShortName">out[31:0]</obj_property>
+         <obj_property name="ObjectShortName">out[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/PI_Q3">
+         <obj_property name="ElementShortName">PI_Q3[31:0]</obj_property>
+         <obj_property name="ObjectShortName">PI_Q3[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/PIDIVTWO_Q3">
+         <obj_property name="ElementShortName">PIDIVTWO_Q3[31:0]</obj_property>
+         <obj_property name="ObjectShortName">PIDIVTWO_Q3[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/ONE_Q2">
+         <obj_property name="ElementShortName">ONE_Q2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ONE_Q2[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/FLOATONE">
+         <obj_property name="ElementShortName">FLOATONE[31:0]</obj_property>
+         <obj_property name="ObjectShortName">FLOATONE[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/FLOAT_NEG_ONE">
+         <obj_property name="ElementShortName">FLOAT_NEG_ONE[31:0]</obj_property>
+         <obj_property name="ObjectShortName">FLOAT_NEG_ONE[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/example_sim/atandut/bIsGreaterThanOne">
+         <obj_property name="ElementShortName">bIsGreaterThanOne</obj_property>
+         <obj_property name="ObjectShortName">bIsGreaterThanOne</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/example_sim/atandut/bIsLessThanNegativeOne">
+         <obj_property name="ElementShortName">bIsLessThanNegativeOne</obj_property>
+         <obj_property name="ObjectShortName">bIsLessThanNegativeOne</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/y0delayreg">
+         <obj_property name="ElementShortName">y0delayreg[31:0]</obj_property>
+         <obj_property name="ObjectShortName">y0delayreg[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/invcond">
+         <obj_property name="ElementShortName">invcond[1:0]</obj_property>
+         <obj_property name="ObjectShortName">invcond[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/invconddelay0">
+         <obj_property name="ElementShortName">invconddelay0[1:0]</obj_property>
+         <obj_property name="ObjectShortName">invconddelay0[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/invconddelay">
+         <obj_property name="ElementShortName">invconddelay[1:0]</obj_property>
+         <obj_property name="ObjectShortName">invconddelay[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/invout">
+         <obj_property name="ElementShortName">invout[31:0]</obj_property>
+         <obj_property name="ObjectShortName">invout[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/example_sim/atandut/invvalid">
+         <obj_property name="ElementShortName">invvalid</obj_property>
+         <obj_property name="ObjectShortName">invvalid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/example_sim/atandut/invoutvalid">
+         <obj_property name="ElementShortName">invoutvalid</obj_property>
+         <obj_property name="ObjectShortName">invoutvalid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/thetaq2">
+         <obj_property name="ElementShortName">thetaq2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">thetaq2[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/invconddelay">
+         <obj_property name="ElementShortName">invconddelay[1:0]</obj_property>
+         <obj_property name="ObjectShortName">invconddelay[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/vcordic_out_float">
+         <obj_property name="ElementShortName">vcordic_out_float[31:0]</obj_property>
+         <obj_property name="ObjectShortName">vcordic_out_float[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/vcordic_in">
+         <obj_property name="ElementShortName">vcordic_in[63:0]</obj_property>
+         <obj_property name="ObjectShortName">vcordic_in[63:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/vcordic_out">
+         <obj_property name="ElementShortName">vcordic_out[31:0]</obj_property>
+         <obj_property name="ObjectShortName">vcordic_out[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/fixedy">
+         <obj_property name="ElementShortName">fixedy[31:0]</obj_property>
+         <obj_property name="ObjectShortName">fixedy[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">30</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/example_sim/atandut/vcordic_in_valid">
+         <obj_property name="ElementShortName">vcordic_in_valid</obj_property>
+         <obj_property name="ObjectShortName">vcordic_in_valid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/example_sim/atandut/vcordic_out_valid">
+         <obj_property name="ElementShortName">vcordic_out_valid</obj_property>
+         <obj_property name="ObjectShortName">vcordic_out_valid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/vcordic_fixed_result_q3">
+         <obj_property name="ElementShortName">vcordic_fixed_result_q3[31:0]</obj_property>
+         <obj_property name="ObjectShortName">vcordic_fixed_result_q3[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">29</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/adjresult1">
+         <obj_property name="ElementShortName">adjresult1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">adjresult1[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">29</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/example_sim/atandut/adjresult2">
+         <obj_property name="ElementShortName">adjresult2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">adjresult2[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">29</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>
