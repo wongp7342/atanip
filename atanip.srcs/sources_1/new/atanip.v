@@ -23,88 +23,96 @@
 module atan(
 	input clock,
 	input reset,
-	input [31:0] y0,
+	input signed [31:0] y0,
 	output reg [31:0] out
     );
     
-    wire [31:0] y0delayreg;
-    RegChain  #(.COUNT(8+12+37-2)) delayy0(
+    wire signed [31:0] y0delayreg;
+    wire signed [31:0] PI_Q3;
+    wire signed [31:0] PIDIVTWO_Q3;
+    wire signed [31:0] ONE_Q2;
+    wire signed [31:0] FLOATONE;
+    wire signed [31:0] FLOAT_NEG_ONE;
+    
+    assign FLOATONE = 32'h3f800000; // single precision 1
+    assign FLOAT_NEG_ONE = 32'hbf800000; // single precision -1
+    
+    assign ONE_Q2 = 32'h40000000; //Q2 fixed point
+    assign PI_Q3 = 32'h6487ed80; //Q3 fixed point
+    assign PIDIVTWO_Q3 = 32'h3243f6c0; //Q3 fixed point
+    
+    wire bIsGreaterThanOne;
+    GreaterThan cmp(.clock(clock),
+        .a(y0),
+        .b(FLOATONE),
+        .out(bIsGreaterThanOne)
+        );
+    
+    wire bIsLessThanNegativeOne;
+    GreaterThan cmp2(.clock(clock),
+        .a(FLOAT_NEG_ONE),
+        .b(y0),
+        .out(bIsLessThanNegativeOne)
+        );
+    
+    wire [1:0] invcond; // 1 when y0 > 1 and 2 when y0 < -1. 0 otherwise
+    assign invcond = bIsGreaterThanOne ? 1 : (bIsLessThanNegativeOne ? 2 : 0);
+        
+    wire [1:0] invconddelay0;
+   
+    RegChain #(.COUNT(27), .WIDTH(2)) delaymode0(
+                                    .clock(clock),
+                                     .reset(reset),
+                                     .in(invcond),
+                                     .out(invconddelay0)
+                                     );
+    
+    
+    RegChain  #(.COUNT(29)) delayy0(
     .clock(clock), .reset(reset),
     .in(y0), .out(y0delayreg));
-    
-    wire [31:0] ONE;
-    assign ONE = 32'h3f800000;
-    
-    wire [31:0] prod1;
-        
-    //8 cycle mul
-    Multiplier mp1(
-        .clock(clock),
-        .a(y0),
-        .b(y0),
-        .out(prod1)
-        );
-        
-    wire [31:0] sum1;
-    
-    //12 cycle add
-    Add add1(
-        .clock(clock),
-        .a(prod1),
-        .b(ONE),
-        .out(sum1)
-        );
 
-    wire [31:0] normscale;
-    //37 cycle invsqrt
-    InvSqrt isqrt(
-        .clock(clock),
-        .a(sum1),
-        .out(normscale)
-        );
-        
-    wire [31:0] normx;
-    wire [31:0] normy;
+    wire signed [31:0] invout;
+    wire invvalid, invoutvalid;
+    assign invvalid = 1;
     
-    Multiplier mul2(
-        .clock(clock),
-        .a(ONE),
-        .b(normscale),
-        .out(normx)
-        );
-        
-    Multiplier mul3(
-        .clock(clock),
-        .a(y0delayreg),
-        .b(normscale),
-        .out(normy)
-    );
+    inverter inv(.aclk(clock),
+        .s_axis_a_tdata(y0),
+        .s_axis_a_tvalid(invvalid),
+        .m_axis_result_tdata(invout),
+        .m_axis_result_tvalid(invoutvalid));
+
+
+    //invconddelay0, invout and y0delayreg for same data
+
+    wire signed [31:0] thetaq2;
+   
+    assign thetaq2 = invconddelay0 == 0 ? y0delayreg : invconddelay0 == 1 ? invout : {1'b0, invout[30:0]};
     
-    wire [63:0] vcordic_in;
+   wire [1:0] invconddelay;
+   
+    RegChain #(.COUNT(38), .WIDTH(2)) delaymode(
+                                    .clock(clock),
+                                     .reset(reset),
+                                     .in(invconddelay0),
+                                     .out(invconddelay)
+                                     );
+   
+     Q2_VFloatToFixed32 convxtofixed(
+	.in(thetaq2),
+	.out(fixedy));
+
+    
+    
+    wire signed [31:0] vcordic_out_float;
+    wire signed [63:0] vcordic_in;
+    wire signed [31:0] vcordic_out;
+    wire signed [31:0] fixedy;
     wire vcordic_in_valid;
-    wire [31:0] vcordic_out;
+    assign vcordic_in_valid = 1;
     wire vcordic_out_valid;
     
-    assign vcordic_in_valid = 1;
-    
-    wire [31:0] fixedx, fixedy;
-     Q2_VFloatToFixed32 convxtofixed(
-	.in(normx),
-	.out(fixedx));
-	
-	Q2_VFloatToFixed32 convytofixed(
-	.in(normy),
-	.out(fixedy));
-    
-    
-    wire [31:0] vcordic_out_float;
-    
-    Q3_VFixedToFloat32 fixedtofloatx(
-	.in(vcordic_out),
-	.out(vcordic_out_float));
-
-    
-    assign vcordic_in = {fixedx, fixedy};
+    assign vcordic_in = {fixedy, ONE_Q2};
     
     vcordic vcord(
         .aclk(clock),
@@ -113,6 +121,19 @@ module atan(
         .m_axis_dout_tdata(vcordic_out),
         .m_axis_dout_tvalid(vcordic_out_valid)
     );
+
+    wire signed [31:0] vcordic_fixed_result_q3;
+    wire signed [31:0] adjresult1;
+    wire signed [31:0] adjresult2;
+    assign adjresult1 = PIDIVTWO_Q3 - vcordic_out;
+    assign adjresult2 = ((vcordic_out <<< 1) - PI_Q3) >>> 1;
+    
+    assign vcordic_fixed_result_q3 = invconddelay == 0 ? vcordic_out :
+                                     invconddelay == 1 ? adjresult1 : adjresult2;
+                                     
+    Q3_VFixedToFloat32 fixedtofloatx(
+	.in(vcordic_fixed_result_q3),
+	.out(vcordic_out_float)); 
 
     always @(posedge clock) begin
         out <= vcordic_out_float;
@@ -179,6 +200,30 @@ module RangeReducer(
 
 endmodule
 
+module GreaterThan (input clock,
+    input [31:0] a, input [31:0] b,
+    output out);
+    
+    wire avalid, bvalid;
+    wire outvalid;
+    wire [7:0] outwire;
+    
+    assign avalid = 1;
+    assign bvalid = 1;
+    fpcmp impl(
+        .aclk(clock),
+        .s_axis_a_tdata(a),
+        .s_axis_a_tvalid(avalid),
+        .s_axis_b_tdata(b),
+        .s_axis_b_tvalid(bvalid),
+        .m_axis_result_tdata(outwire),
+        .m_axis_result_tvalid(outvalid)  
+    );
+    
+    assign out = outwire[0];
+    
+endmodule
+
 module sub (input clock,
     input [31:0] a, input [31:0] b,
     output reg [31:0] out);
@@ -207,6 +252,10 @@ endmodule
 
 module Register (input clock, input reset, input [31:0] in, output reg [31:0] out);
 
+    initial begin
+        out <= 32'h0;
+    end 
+
     always @(posedge clock) begin
         if(reset == 1) begin
             out <= 32'h0;
@@ -217,21 +266,21 @@ module Register (input clock, input reset, input [31:0] in, output reg [31:0] ou
 
 endmodule
 
-module RegChain #(parameter COUNT = 8) (
+module RegChain #(parameter COUNT = 8, parameter WIDTH = 32) (
        input clock,
        input reset,
        input [31:0] in,
-       output reg [31:0] out
+       output reg [WIDTH - 1:0] out
     );
     
-    wire [31:0] regout [COUNT - 1 : 0];
+    wire [WIDTH - 1:0] regout [COUNT - 2 : 0];
     
     Register r1(.clock(clock), .reset(reset),
                 .in(in), .out(regout[0]));
     
     genvar idx;
     generate
-        for(idx = 1; idx < COUNT; idx = idx + 1) begin
+        for(idx = 1; idx < COUNT - 1; idx = idx + 1) begin
             Register r(
                 .clock(clock),
                 .reset(reset),
@@ -240,8 +289,12 @@ module RegChain #(parameter COUNT = 8) (
         end
     endgenerate
     
+    initial begin
+        out <= 0;
+    end
+    
     always @(posedge clock) begin
-        out <= regout[COUNT - 1];
+        out <= regout[COUNT - 2];
     end
     
 endmodule
@@ -269,6 +322,10 @@ module Multiplier(
         .m_axis_result_tdata(outwire),
         .m_axis_result_tvalid(outvalid)
     );
+
+    initial begin
+        out <= 32'h0;
+    end
 
     always @(posedge clock) begin
         out <= outvalid ? outwire : 32'h0;
@@ -300,6 +357,10 @@ module Add(
         .m_axis_result_tvalid(outvalid)
     );
 
+    initial begin
+        out <= 32'h0;
+    end
+    
     always @(posedge clock) begin
         out <= outvalid ? outwire : 32'h0;
     end
