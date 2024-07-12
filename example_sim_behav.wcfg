@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="207.680 ns"></ZoomStartTime>
-      <ZoomEndTime time="563.669 ns"></ZoomEndTime>
-      <Cursor1Time time="313.756 ns"></Cursor1Time>
+      <ZoomStartTime time="1,532.550 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,872.068 ns"></ZoomEndTime>
+      <Cursor1Time time="1,803.189 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="341"></NameColumnWidth>
-      <ValueColumnWidth column_width="287"></ValueColumnWidth>
+      <ValueColumnWidth column_width="279"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="19" />
    <wvobject type="logic" fp_name="/example_sim/clock_">
@@ -44,6 +44,10 @@
    <wvobject type="array" fp_name="/example_sim/atanout_">
       <obj_property name="ElementShortName">atanout_[31:0]</obj_property>
       <obj_property name="ObjectShortName">atanout_[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/example_sim/x0_">
       <obj_property name="ElementShortName">x0_[31:0]</obj_property>
@@ -52,6 +56,10 @@
    <wvobject type="array" fp_name="/example_sim/y0_">
       <obj_property name="ElementShortName">y0_[31:0]</obj_property>
       <obj_property name="ObjectShortName">y0_[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">24</obj_property>
+      <obj_property name="radix_otherWidth">8</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/example_sim/z0_">
       <obj_property name="ElementShortName">z0_[31:0]</obj_property>
@@ -116,6 +124,10 @@
       <wvobject type="array" fp_name="/example_sim/atandut/out">
          <obj_property name="ElementShortName">out[31:0]</obj_property>
          <obj_property name="ObjectShortName">out[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">FLOATINGPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">24</obj_property>
+         <obj_property name="radix_otherWidth">8</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/example_sim/atandut/PI_Q3">
          <obj_property name="ElementShortName">PI_Q3[31:0]</obj_property>

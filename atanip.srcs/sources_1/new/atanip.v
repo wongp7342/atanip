@@ -27,6 +27,7 @@ module atan(
 	output reg [31:0] out
     );
     
+    wire signed [31:0] fixedy;
     wire signed [31:0] y0delayreg;
     wire signed [31:0] PI_Q3;
     wire signed [31:0] PIDIVTWO_Q3;
@@ -107,7 +108,7 @@ module atan(
     wire signed [31:0] vcordic_out_float;
     wire signed [63:0] vcordic_in;
     wire signed [31:0] vcordic_out;
-    wire signed [31:0] fixedy;
+
     wire vcordic_in_valid;
     assign vcordic_in_valid = 1;
     wire vcordic_out_valid;
@@ -141,65 +142,6 @@ module atan(
     
 endmodule
 
-module RangeReducer(
-    input clock, input reset,
-    input [31:0] in, output reg [31:0] out);
-     
-     wire [31:0] TWO_PI;
-     
-    assign TWO_PI = 32'h40c90fdb;
-     
-     wire a_ready, b_ready;
-     wire a_valid, b_valid;
-     
-     wire [31:0] div_out;
-     wire div_ready, div_valid;
-     
-     assign a_valid = 1;
-     assign b_valid = 1;
-     
-    divider div(
-        .aclk(clock),
-        .s_axis_a_tdata(in),
-        .s_axis_a_tvalid(a_valid),
-        .s_axis_b_tdata(TWO_PI),
-        .s_axis_b_tvalid(b_valid),
-        .m_axis_result_tdata(div_out),
-        .m_axis_result_tvalid(div_valid));
-     
-
-     wire [31:0] extract_out;
-     
-     FP_extract extract(
-     .io_in_a(div_out),
-     .io_out_frac(extract_out));
-     
-     wire mul_a_ready, mul_b_ready;
-     wire mul_a_valid, mul_b_valid;
-     wire [31:0] mul_out;
-     wire mul_ready, mul_valid;
-     
-     assign mul_a_valid = 1;
-     assign mul_b_valid = 1;
-     assign mul_ready = 1;
-     
-     multiplier mul(
-        .aclk(clock),
-        .s_axis_a_tdata(extract_out),
-        .s_axis_a_tvalid(mul_a_valid),
-        .s_axis_b_tdata(TWO_PI),
-        .s_axis_b_tvalid(mul_b_valid),
-        .m_axis_result_tdata(mul_out),
-        .m_axis_result_tvalid(mul_valid)
-     );
-     
-
-    always @(posedge clock) begin
-        out <= mul_valid == 1 ? mul_out : 32'h0;
-    end
-
-endmodule
-
 module GreaterThan (input clock,
     input [31:0] a, input [31:0] b,
     output out);
@@ -221,32 +163,6 @@ module GreaterThan (input clock,
     );
     
     assign out = outwire[0];
-    
-endmodule
-
-module sub (input clock,
-    input [31:0] a, input [31:0] b,
-    output reg [31:0] out);
-    
-    wire avalid, bvalid;
-    wire outvalid;
-    wire [31:0] outwire;
-    
-    assign avalid = 1;
-    assign bvalid = 1;
-    subtractor impl(
-        .aclk(clock),
-        .s_axis_a_tdata(a),
-        .s_axis_a_tvalid(avalid),
-        .s_axis_b_tdata(b),
-        .s_axis_b_tvalid(bvalid),
-        .m_axis_result_tdata(outwire),
-        .m_axis_result_tvalid(outvalid)  
-    );
-    
-    always @(posedge clock) begin
-        out <= outvalid == 1 ? outwire : 32'h0;
-    end
     
 endmodule
 
@@ -298,102 +214,6 @@ module RegChain #(parameter COUNT = 8, parameter WIDTH = 32) (
     end
     
 endmodule
-
-module Multiplier(
-    input clock,
-    input [31:0] a,
-    input [31:0] b,
-    output reg [31:0] out
-);
-
-    wire avalid, bvalid;
-    wire [31:0] outwire;
-    wire outvalid;
-    
-    assign avalid = 1;
-    assign bvalid = 1;
-    
-    multiply mul(
-        .aclk(clock),
-        .s_axis_a_tdata(a),
-        .s_axis_b_tdata(b),
-        .s_axis_a_tvalid(avalid),
-        .s_axis_b_tvalid(bvalid),
-        .m_axis_result_tdata(outwire),
-        .m_axis_result_tvalid(outvalid)
-    );
-
-    initial begin
-        out <= 32'h0;
-    end
-
-    always @(posedge clock) begin
-        out <= outvalid ? outwire : 32'h0;
-    end
-
-endmodule
-
-module Add(
-    input clock,
-    input [31:0] a,
-    input [31:0] b,
-    output reg [31:0] out
-);
-
-    wire avalid, bvalid;
-    wire [31:0] outwire;
-    wire outvalid;
-    
-    assign avalid = 1;
-    assign bvalid = 1;
-    
-    adder add(
-        .aclk(clock),
-        .s_axis_a_tdata(a),
-        .s_axis_b_tdata(b),
-        .s_axis_a_tvalid(avalid),
-        .s_axis_b_tvalid(bvalid),
-        .m_axis_result_tdata(outwire),
-        .m_axis_result_tvalid(outvalid)
-    );
-
-    initial begin
-        out <= 32'h0;
-    end
-    
-    always @(posedge clock) begin
-        out <= outvalid ? outwire : 32'h0;
-    end
-
-endmodule
-
-module InvSqrt(
-    input clock,
-    input [31:0] a,
-    output reg [31:0] out
-);
-
-    wire avalid;
-    wire [31:0] outwire;
-    wire outvalid;
-    
-    assign avalid = 1;
-    
-    recipsqrt rsqrt(
-        .aclk(clock),
-        .s_axis_a_tdata(a),
-        .s_axis_a_tvalid(avalid),
-        .m_axis_result_tdata(outwire),
-        .m_axis_result_tvalid(outvalid)
-    );
-
-    always @(posedge clock) begin
-        out <= outvalid ? outwire : 32'h0;
-    end
-
-endmodule
-
-
 
 module VCLZ32(
 	input [31:0] in,

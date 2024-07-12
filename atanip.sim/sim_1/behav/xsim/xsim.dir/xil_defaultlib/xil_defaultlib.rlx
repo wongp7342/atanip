@@ -6,5 +6,5 @@ Feb  8 2024
 /home/psw/atanip/atanip.gen/sources_1/ip/inverter/sim/inverter.v,1720736736,verilog,,/home/psw/atanip/atanip.gen/sources_1/ip/fpcmp/sim/fpcmp.v,,inverter,,uvm,,,,,,
 /home/psw/atanip/atanip.gen/sources_1/ip/vcordic/sim/vcordic.vhd,1720729146,vhdl,,,,vcordic,,,,,,,,
 /home/psw/atanip/atanip.sim/sim_1/behav/xsim/glbl.v,1697210495,verilog,,,,glbl,,uvm,,,,,,
-/home/psw/atanip/atanip.srcs/sim_1/new/atan_tb.sv,1720736850,systemVerilog,,,,example_sim,,uvm,,,,,,
-/home/psw/atanip/atanip.srcs/sources_1/new/atanip.v,1720736796,verilog,,,,Add;FP_extract;GreaterThan;InvSqrt;Multiplier;Q2_VFixedToFloat32;Q2_VFloatToFixed32;Q3_VFixedToFloat32;Q3_VFloatToFixed32;RangeReducer;RegChain;Register;VCLZ32;VFixedToFloat32;VFloatToFixed32;atan;leadingOneDetector;sub,,uvm,,,,,,
+/home/psw/atanip/atanip.srcs/sim_1/new/atan_tb.sv,1720808052,systemVerilog,,,,example_sim,,uvm,,,,,,
+/home/psw/atanip/atanip.srcs/sources_1/new/atanip.v,1720809700,verilog,,,,FP_extract;GreaterThan;Q2_VFixedToFloat32;Q2_VFloatToFixed32;Q3_VFixedToFloat32;Q3_VFloatToFixed32;RegChain;Register;VCLZ32;VFixedToFloat32;VFloatToFixed32;atan;leadingOneDetector,,uvm,,,,,,
